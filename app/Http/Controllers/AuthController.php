@@ -22,7 +22,7 @@ class AuthController extends Controller
         ]);
       $user =  User::create([
             'name' => $fields['name'],
-            'email' => $fields['email'],
+            'email' => $fields['email'], 
             'password' => bcrypt($fields['password']),
             'role_id' => $fields['role_id'],
             'structure_id' => $fields['structure_id'],
@@ -31,12 +31,13 @@ class AuthController extends Controller
         $id = $user->id;
         $token = $user->createToken('myapptoken')->plainTextToken;
         $response = [
-            'user' =>  Outil::redirectgraphql($this->queryName, "id:{$id}", Outil::$queries[$this->queryName]),
+            'user' =>  $user,
+            // 'user' =>  Outil::redirectgraphql($this->queryName, "id:{$id}", Outil::$queries[$this->queryName]),
             'token' => $token
         ];
 
-
-        return Outil::redirectgraphql($this->queryName, "id:{$id}", Outil::$queries[$this->queryName]);
+        return $response;
+        // return Outil::redirectgraphql($this->queryName, "id:{$id}", Outil::$queries[$this->queryName]);
     }
 
      public function login(Request $request ) {
