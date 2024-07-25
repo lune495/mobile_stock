@@ -26,6 +26,8 @@ use App\Http\Controllers\ProformaController;
     Route::get('/approvisionnementpdf/{id}', [ApprovisionnementController::class,'genereallPDf']);
     Route::get('/export-produits',[ProduitController::class,'exportProduit']);
     Route::get('/test',[VenteController::class,'Notif']);
+    Route::get('/codebarre', [ProduitController::class,'generatePDF6']);
+
     // Route::get('/', function () {
     //     return view('welcome');
     // });

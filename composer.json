@@ -16,6 +16,7 @@
         "laravel/helpers": "^1.5",
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.5",
+        "milon/barcode": "^11.0",
         "predis/predis": "^2.2",
         "pusher/pusher-php-server": "~5.0",
         "rebing/graphql-laravel": "^8.2"

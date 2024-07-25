@@ -11,6 +11,8 @@ use App\Exports\ProduitView;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
+use \DNS1D;
+
 class ProduitController extends Controller
 {
     private $queryName = "produits";
@@ -185,6 +187,38 @@ class ProduitController extends Controller
 
      public function importView(Request $request){
         return view('importFile');
+    }
+
+    public function generatePDF6(Request $request)
+    {
+        $numBarcodes = $request->input('num_barcodes', 10); // Par défaut 10 codes-barres si non spécifié
+        $barcodes = [];
+
+        for ($i = 0; $i < 10; $i++) {
+            // Générer un code-barres unique, par exemple un nombre aléatoire de 12 chiffres
+            $barcode = str_pad(mt_rand(0, 999999999999), 12, '0', STR_PAD_LEFT);
+            $barcodes[] = $barcode;
+        }
+
+        $barcodeImages = [];
+        foreach ($barcodes as $barcode) {
+            // Créer un chemin pour chaque image dans le sous-répertoire 'barcodes'
+            $imagePath = 'barcodes/' . $barcode . '.png';
+            $barcodeImage = DNS1D::getBarcodePNG($barcode, 'C39');
+
+            // Stocker l'image
+            Storage::disk('public')->put($imagePath, base64_decode($barcodeImage));
+
+            // Ajouter le chemin complet de l'image dans le tableau
+            $barcodeImages[] = [
+                'code' => $barcode,
+                'image' => public_path('storage/' . $imagePath),
+            ];
+        }
+
+        // Générer le PDF
+        $pdf = PDF::loadView('pdf.barcode_pdf', compact('barcodeImages'));
+        return $pdf->stream();
     }
  
     public function import(Request $request){
