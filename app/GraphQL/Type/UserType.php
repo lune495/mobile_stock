@@ -22,6 +22,8 @@ class UserType extends GraphQLType
                 'email'                     => ['type' => Type::string()],
                 'role_id'                   => ['type' => Type::int()],
                 'role'                      => ['type' => GraphQL::type('Role')],
+                'structure_id'              => ['type' => Type::int()],
+                'structure'                 => ['type' => GraphQL::type('Structure')],
             ];
     }
 

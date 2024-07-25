@@ -24,6 +24,7 @@ class UserQuery extends Query
         [
             'id'                  => ['type' => Type::int()],
             'role_id'             => ['type' => Type::int()],
+            'structure_id'        => ['type' => Type::int()],
             'nom'                 => ['type' => Type::string()],
         ];
     }
@@ -38,6 +39,10 @@ class UserQuery extends Query
         if (isset($args['role_id']))
         {
             $query = $query->where('role_id', $args['role_id']);
+        }
+        if (isset($args['structure_id']))
+        {
+            $query = $query->where('structure_id', $args['structure_id']);
         }  
         $query = $query->get(); 
         return $query->map(function (User $item)
@@ -49,6 +54,8 @@ class UserQuery extends Query
                 'email'                   => $item->email,
                 'role_id'                 => $item->role_id,
                 'role'                    => $item->role,
+                'structure_id'            => $item->structure_id,
+                'structure'               => $item->structure,
             ];
         });
 
