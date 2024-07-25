@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 use \DNS1D;
+use \PDF;
+
 
 class ProduitController extends Controller
 {
