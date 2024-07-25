@@ -36,7 +36,7 @@ class StructureQuery extends Query
             return
             [
                 'id'                      => $item->id,
-                'name'                     => $item->nom
+                'name'                     => $item->name
             ];
         });
 
