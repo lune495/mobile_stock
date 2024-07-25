@@ -196,7 +196,7 @@ class ProduitController extends Controller
         $numBarcodes = $request->input('num_barcodes', 10); // Par défaut 10 codes-barres si non spécifié
         $barcodes = [];
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 2; $i++) {
             // Générer un code-barres unique, par exemple un nombre aléatoire de 12 chiffres
             $barcode = str_pad(mt_rand(0, 999999999999), 12, '0', STR_PAD_LEFT);
             $barcodes[] = $barcode;
