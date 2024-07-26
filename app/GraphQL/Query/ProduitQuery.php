@@ -37,6 +37,11 @@ class ProduitQuery extends Query
         {
             $query = $query->where('id', $args['id']);
         }
+        if (isset($args['code']))
+        {
+            // $query->where('code',$args['code']);
+            $query = $query->where('code',Outil::getOperateurLikeDB(),'%'.$args['code'].'%');
+        }
         if (isset($args['search']))
         {
             $query = $query->where('designation',Outil::getOperateurLikeDB(),'%'.$args['search'].'%')
