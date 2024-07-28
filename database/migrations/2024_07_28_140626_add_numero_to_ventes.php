@@ -15,7 +15,7 @@ class AddNumeroToVentes extends Migration
     {
         Schema::table('ventes', function (Blueprint $table) {
             //
-            $table->string("numero")->nullable(0);
+            $table->string("numero")->nullable();
         });
     }
 
