@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRemiseToVenteProduits extends Migration
+class AddNumeroToVentes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddRemiseToVenteProduits extends Migration
      */
     public function up()
     {
-        Schema::table('vente_produits', function (Blueprint $table) {
-            $table->integer("remise")->default(0);
+        Schema::table('ventes', function (Blueprint $table) {
+            //
+            $table->string("numero")->nullable(0);
         });
     }
 
@@ -25,9 +26,8 @@ class AddRemiseToVenteProduits extends Migration
      */
     public function down()
     {
-        Schema::table('vente_produits', function (Blueprint $table) {
-            //
-            $table->dropColumn('remise');
+        Schema::table('ventes', function (Blueprint $table) {
+            $table->dropColumn('numero');
         });
     }
 }
