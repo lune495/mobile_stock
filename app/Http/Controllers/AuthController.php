@@ -41,7 +41,6 @@ class AuthController extends Controller
     }
 
      public function login(Request $request ) {
-        private $queryName = "users";
         $fields = $request->validate([
             'email' => 'required|string',
             'password' => 'required|string'
