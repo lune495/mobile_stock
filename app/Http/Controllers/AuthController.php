@@ -41,6 +41,7 @@ class AuthController extends Controller
     }
 
      public function login(Request $request ) {
+        private $queryName = "users";
         $fields = $request->validate([
             'email' => 'required|string',
             'password' => 'required|string'
@@ -60,12 +61,13 @@ class AuthController extends Controller
         //     \Log::info("Schema set to: " . $schemaName); // Ajoutez cette ligne pour vérifier le schéma
         // }
         $token = $user->createToken('myapptoken')->plainTextToken;
-        $response = [
-            'user' => $user,
-            'token' => $token
-        ];
+        return Outil::redirectgraphql($this->queryName, "id:{$id}", Outil::$queries[$this->queryName],$token);
+        // $response = [
+        //     'user' => $user,
+        //     'token' => $token
+        // ];
 
-        return response($response,201);
+        // return response($response,201);
     }
 
     public function logout(Request $request)
