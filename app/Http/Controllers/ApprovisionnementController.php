@@ -129,7 +129,8 @@ class ApprovisionnementController extends Controller
                     throw new \Exception($errors);
                 }
                 DB::commit();
-                return  Outil::redirectgraphql($this->queryName, "id:{$itemId}", Outil::$queries[$this->queryName]);
+                $token = Auth::user()->createToken('TokenName')->plainTextToken;
+                return  Outil::redirectgraphql($this->queryName, "id:{$id}", Outil::$queries[$this->queryName],$token);
             });
         } catch (exception $e) {            
              DB::rollback();

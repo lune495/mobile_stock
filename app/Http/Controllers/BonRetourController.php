@@ -76,7 +76,8 @@ class BonRetourController extends Controller
                 }
                 DB::commit();
                 //return $item;
-                return  Outil::redirectgraphql($this->queryName, "id:{$itemId}", Outil::$queries[$this->queryName]);
+                $token = Auth::user()->createToken('TokenName')->plainTextToken;
+                return  Outil::redirectgraphql($this->queryName, "id:{$id}", Outil::$queries[$this->queryName],$token);
             });
         } catch (exception $e) {            
              DB::rollback();
