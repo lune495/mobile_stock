@@ -61,7 +61,6 @@ class AuthController extends Controller
         // }
         // $token = $user->createToken('myapptoken')->plainTextToken;
         // return Outil::redirectgraphql($this->queryName, "id:{$user->id}", Outil::$queries[$this->queryName],$token);
-        dd($user);
         $response = [
             'user' => $user,
             'token' => $token
