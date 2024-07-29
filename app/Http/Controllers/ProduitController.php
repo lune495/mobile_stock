@@ -117,7 +117,8 @@ class ProduitController extends Controller
                     {
                         $item->save();
                         $id = $item->id;
-                        return  Outil::redirectgraphql($this->queryName, "id:{$id}", Outil::$queries[$this->queryName]);
+                        $token = Auth::user()->createToken('TokenName')->plainTextToken;
+                        return  Outil::redirectgraphql($this->queryName, "id:{$id}", Outil::$queries[$this->queryName],$token);
                     }
                     if (isset($errors))
                     {
