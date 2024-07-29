@@ -59,12 +59,13 @@ class AuthController extends Controller
         //     DB::statement("SET search_path TO {$schemaName}");
         //     \Log::info("Schema set to: " . $schemaName); // Ajoutez cette ligne pour vérifier le schéma
         // }
-        $token = $user->createToken('myapptoken')->plainTextToken;
-        return Outil::redirectgraphql($this->queryName, "id:{$user->id}", Outil::$queries[$this->queryName],$token);
-        // $response = [
-        //     'user' => $user,
-        //     'token' => $token
-        // ];
+        // $token = $user->createToken('myapptoken')->plainTextToken;
+        // return Outil::redirectgraphql($this->queryName, "id:{$user->id}", Outil::$queries[$this->queryName],$token);
+        dd($user);
+        $response = [
+            'user' => $user,
+            'token' => $token
+        ];
 
         // return response($response,201);
     }
