@@ -32,10 +32,10 @@ class Outil extends Model
         "approvisionnements"         => " id,user_id,user{name},montant,statut,numero,qte_total_appro,fournisseur_id,fournisseur{id,nom_complet,telephone,adresse},ligne_approvisionnements{id,produit_id,produit{id,designation,pa,pv,qte,famille_id,famille{id,nom}},quantity_received,created_at,created_at_fr,updated_at,updated_at_fr},created_at,created_at_fr,type_appro",
     );
 
-    public static function redirectgraphql($itemName, $critere,$liste_attributs)
+    public static function redirectgraphql($itemName, $critere,$liste_attributs, $token)
     {
         $path='{'.$itemName.'('.$critere.'){'.$liste_attributs.'}}';
-        return redirect('graphql?query='.urlencode($path));
+        return redirect('graphql?query='.urlencode($path).'&token='.$token);
     }
 
     public static function getResponseError(\Exception $e)

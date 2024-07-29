@@ -131,9 +131,10 @@ class VenteController extends Controller
                         // $log->user_id = 2;
                         $log->save();
                         DB::commit();
-                        $data = Outil::getOneItemWithGraphQl($this->queryName,$id, true);
-                        event(new MyEvent($data));
-                        return  Outil::redirectgraphql($this->queryName, "id:{$id}", Outil::$queries[$this->queryName]);
+                        // $data = Outil::getOneItemWithGraphQl($this->queryName,$id, true);
+                        // event(new MyEvent($data));
+                        $token = Auth::user()->createToken('TokenName')->plainTextToken;
+                        return  Outil::redirectgraphql($this->queryName, "id:{$id}", Outil::$queries[$this->queryName],$token);
                     }
                     if (isset($errors))
                     {
