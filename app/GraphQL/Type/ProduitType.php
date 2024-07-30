@@ -76,6 +76,9 @@ class ProduitType extends GraphQLType
     }
     protected function resolveImageField($root, array $args)
     {
-        return $root['image'] ? $root['image'] : null;
+        // return $root['image'] ? $root['image'] : null;
+        $baseUrl = config('app.url');
+        $imagePath = $baseUrl . 'images/' . $root['image'];
+        return $root['image'] ? $imagePath : null;
     }
 }
