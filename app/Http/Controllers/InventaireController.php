@@ -88,6 +88,7 @@ class InventaireController extends Controller
                             $item->ref = "InV0{$item->id}";
                             $item->save();
                             DB::commit();
+                            $id = $item->id;
                             $token = Auth::user()->createToken('TokenName')->plainTextToken;
                             return  Outil::redirectgraphql($this->queryName, "id:{$id}", Outil::$queries[$this->queryName],$token);
                         }
