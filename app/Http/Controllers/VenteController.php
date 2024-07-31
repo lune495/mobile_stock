@@ -46,7 +46,6 @@ class VenteController extends Controller
                 $item = new Vente();
                 $log = new Log();
                 $user = Auth::user();
-                // $user_id = auth('sanctum')->user()->id;
                 $montant_total_vente = 0;
                 $qte_total_vente = 0;
                 if (!empty($request->id))
@@ -100,7 +99,7 @@ class VenteController extends Controller
                                     $saved = $venteprdt->save();
                                     if($saved)
                                     {
-                                        // $produit->qte = $produit->qte != null ? $produit->qte - $venteprdt->qte : $venteprdt->qte;
+                                        $produit->qte = $produit->qte != null ? $produit->qte - $venteprdt->qte : $venteprdt->qte;
                                         $qte_total_vente = $qte_total_vente + $venteprdt->qte;
                                         $montant_total_vente = $montant_total_vente  + ($detail['prix_vente'] * $venteprdt->qte);
                                         $produit->save();
