@@ -123,6 +123,7 @@ class ApprovisionnementController extends Controller
                     $item->montant = $montant_total_appro;
                     $item->qte_total_appro = $qte_total_appro;
                     $item->save();
+                    $id = $item->id;
                 }
                 if (isset($errors))
                 {
